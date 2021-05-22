@@ -1,0 +1,47 @@
+{
+	"user": "nessa-blue",
+	"repo": "Hard-Survival",
+	"entry": "gamemodes//main.pwn",
+	"output": "gamemodes//main.amx",
+	"dependencies": [
+		"sampctl/samp-stdlib",
+		"maddinat0r/sscanf",
+		"pawn-lang/YSI-Includes",
+		"Awsomedude/easyDialog"
+	],
+	"local": true,
+	"runtime": {
+			"version": "0.3.7",
+			"mode": "server",
+			"gamemodes": [
+				"main"
+			],
+			"plugins": [
+				"maddinat0r/sscanf",
+				"Zeex/samp-plugin-jit"
+			],
+			"rcon_password": "trumalene",
+			"port": 7777,
+			"hostname": "[0.3.7] Hard Survival | In development",
+			"maxplayers": 50,
+			"language": "",
+			"announce": true
+	},
+	"builds": [
+		{
+			"name": "dev",
+			"version": "3.10.10",
+			"args": [
+				"-;+",
+				"-(+",
+				"-d3",
+				"-E",
+				"-Z"
+			],
+			"includes": [
+				"gamemodes/modules/core/accounts"
+			],
+			"compiler": {}
+		}
+	]
+}
