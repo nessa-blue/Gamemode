@@ -3,6 +3,7 @@
 hook OnPlayerConnect(playerid) {
     if(IsPlayerRegistred(playerid)) {
         Dialog_Show(playerid, "Login", DIALOG_STYLE_PASSWORD, "Login", "Type the password:", "Ok", "Kick me");
+        Player_RegisteredStatus(playerid, true);
     }
     else {
         Dialog_Show(playerid, "Register", DIALOG_STYLE_PASSWORD, "Register", "Type password you want on this account:", "Ok", "Kick me");
@@ -19,6 +20,9 @@ hook OnPlayerRequestSpawn(playerid) {
 
 hook OnPlayerDisconnect(playerid, reason) {
     ClearVariables(playerid);
+    if(!Player_IsRegistered(playerid)) {
+        fremove(Player_GetPath(playerid));
+    }
     return 1;
 }
 
