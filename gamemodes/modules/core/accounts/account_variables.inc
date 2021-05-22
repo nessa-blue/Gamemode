@@ -7,7 +7,9 @@ static
     ages[MAX_PLAYERS],
     string: dateOfRegistration[MAX_PLAYERS][128],
     bool: isPlayerLogined[MAX_PLAYERS],
-    loginAttempts[MAX_PLAYERS];
+    loginAttempts[MAX_PLAYERS],
+    bool: isRegistered[MAX_PLAYERS],
+    gender[MAX_PLAYERS];
 
 /**
     Get/Set Functions
@@ -37,7 +39,8 @@ public Player_Load(playerid, name[], value[]) {
     INI_Int("Respects", respects[playerid]);
     INI_Int("Cash", cash[playerid]);
     INI_Int("Skin", skin[playerid]);
-    INI_Int("Ages", skin[playerid]);
+    INI_Int("Ages", ages[playerid]);
+    INI_Int("Gender", gender[playerid]);
     INI_String("DateOfRegistration", dateOfRegistration[playerid]);
     return 1;
 }
@@ -161,7 +164,7 @@ stock Player_SetAges(playerid, amount) {
         return 0;
     }
 
-    skin[playerid] = amount;
+    ages[playerid] = amount;
     new INI:File = INI_Open(Player_GetPath(playerid));
     INI_WriteInt(File, "Ages", Player_GetAges(playerid));
     INI_Close(File);
@@ -230,5 +233,34 @@ stock ClearVariables(playerid) {
     isPlayerLogined[playerid] = false;
     loginAttempts[playerid]=0;
 
+    return 1;
+}
+
+stock Player_IsRegistered(playerid) {
+    return isRegistered[playerid];
+}
+
+stock Player_RegisteredStatus(playerid, bool: status) {
+    if(!IsPlayerConnected(playerid) || !strlen(ReturnPlayerName(playerid))) {
+        return 0;
+    }
+    isRegistered[playerid] = status;
+    return 1;
+}
+
+#define Male 1
+#define Female 0
+stock Player_GetGender(playerid) {
+    return gender[playerid];
+}
+
+stock Player_SetGender(playerid, Gender) {
+    if(!IsPlayerConnected(playerid) || !strlen(ReturnPlayerName(playerid))) {
+        return 0;
+    }
+    gender[playerid] = Gender;
+    new INI:File = INI_Open(Player_GetPath(playerid));
+    INI_WriteInt(File, "Gender", Player_GetGender(playerid));
+    INI_Close(File);
     return 1;
 }
