@@ -1,3 +1,3 @@
 # Gamemode
 
-This is gamemode in development.
+This gamemode is under development
