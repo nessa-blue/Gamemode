@@ -65,6 +65,9 @@ Dialog:Ages(playerid, response, listitem, const inputtext[]) {
         Dialog_Show(playerid, "Ages", DIALOG_STYLE_INPUT, "Ages", "Type number of your ages!", "Ok", "Kick me");
         return 1;
     }
+    if(!response) {
+        Kick(playerid);
+    }
     Player_SetAges(playerid, strval(inputtext));
     va_SendClientMessage(playerid, X11_BLUE, "Server: "WHITE"You typed your ages, you're registered!");
     Player_RegisteredStatus(playerid, true);
